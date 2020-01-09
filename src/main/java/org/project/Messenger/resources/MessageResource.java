@@ -20,28 +20,29 @@ import org.apache.log4j.Logger;
 import org.project.Messenger.DTO.MessageDTO;
 import org.project.Messenger.model.Message;
 import org.project.Messenger.service.MessageService;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 @Path("/messages")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class MessageResource {
 	
+	final static Logger logger = Logger.getLogger(MessageResource.class);
+	private MessageService messageService = new MessageService();
 	
-	//private MessageService messageService = new MessageService();
-	
-	ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-	
-	private MessageService messageService = context.getBean("messageService",MessageService.class);
-	final static Logger logger = Logger.getLogger(MessageService.class);
+	/*
+	 * ApplicationContext context = new
+	 * ClassPathXmlApplicationContext("applicationContext.xml");
+	 * 
+	 * private MessageService messageService =
+	 * context.getBean("messageService",MessageService.class);
+	 */
 	
 	@GET
 	public List<MessageDTO> getMessages(@QueryParam("author") String author,
 							  @QueryParam("start") int start,
 							  @QueryParam("size") int size) {
 		try {
-			if(!author.isEmpty()) {
+			if(author != null && !"".equals(author)) {
 				return messageService.getAllMessagesForAuthor(author);
 			}
 			if(start>0&&size>0) {

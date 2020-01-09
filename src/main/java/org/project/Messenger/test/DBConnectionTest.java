@@ -13,7 +13,7 @@ public class DBConnectionTest {
 		  
 		//step2 create  the connection object  
 		Connection con=DriverManager.getConnection(  
-		"jdbc:oracle:thin:@localhost:1521:orcl","SYSTEM","Passw0rd");  
+		"jdbc:oracle:thin:@localhost:1521:orcl","SYSTEM","******");  
 		  
 		//step3 create the statement object  
 		Statement stmt=con.createStatement();  
