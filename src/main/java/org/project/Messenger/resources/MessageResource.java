@@ -29,14 +29,6 @@ public class MessageResource {
 	final static Logger logger = Logger.getLogger(MessageResource.class);
 	private MessageService messageService = new MessageService();
 	
-	/*
-	 * ApplicationContext context = new
-	 * ClassPathXmlApplicationContext("applicationContext.xml");
-	 * 
-	 * private MessageService messageService =
-	 * context.getBean("messageService",MessageService.class);
-	 */
-	
 	@GET
 	public List<MessageDTO> getMessages(@QueryParam("author") String author,
 							  @QueryParam("start") int start,
